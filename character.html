@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del Personaje</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    if (!usuarioActivo) {
+      window.location.replace("login.html");
+    }
+  </script>
+</head>
+<body class="bg-gray-100 text-black min-h-screen flex flex-col items-center justify-center p-6">
+  <div id="detallePersonaje" class="w-full max-w-sm"></div>
+  <a href="index.html" class="mt-6 flex items-center gap-2 bg-[#031808] open-sans text-sm hover:bg-[#7cce00] hover:text-[#031808] text-white font-semibold py-2.5 px-5 rounded-xl transition-all duration-300 shadow-md">
+    Volver al Inicio
+  </a>
+
+  <script src="character.js"></script>
+</body>
+</html>

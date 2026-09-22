@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    if (usuarioActivo) {
+      window.location.replace("index.html");
+    }
+  </script>
+  <title>Registro</title>
+</head>
+<body class="relative min-h-screen flex items-center justify-center bg-black py-2">
+  <div style="background-image: url('./img/11.jpg');" class="absolute inset-0 bg-cover bg-center blur-xs -z-20"></div>
+    <div class="flex drop-shadow-[0_10px_30px_rgba(0,0,0,0.7)] rounded-2xl md:p-4 lg:py-8">
+      <div style="background-image: url('./img/6.jpg');" class="hidden lg:flex relative z-10 -mr-6 bg-cover w-[420px] rounded-2xl shadow-[0px_10px_20px_rgba(0,0,0,0.5)]">
+      </div>
+      <div class="bg-white rounded-2xl p-8 sm:py-16 sm:px-20 lg:rounded-r-2xl lg:pl-[95px] lg:pr-[70px] lg:py-[50px]">
+        <form id="registroForm" class="flex flex-col gap-3 w-60 sm:w-80 lg:w-75"> 
+          <h2 class="text-2xl sm:text-4xl pb-4 saira uppercase tracking-widest text-center text-[#031808]">
+            Registrarse
+          </h2>
+          <div class="flex flex-col gap-[3px]">
+            <label for="nombre" class="text-[13px] open-sans font-bold tracking-wide">Nombre</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-sm">
+                <i class="fa-regular fa-user"></i>
+              </span>
+              <input type="text" id="nombre" nombre="nombre" placeholder="Ingrese su nombre" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+            </div>
+            <p class="text-[10px] text-red-500 mt-1"></p>
+          </div>
+          <div class="flex flex-col gap-[3px]">
+            <label for="apellido" class="text-[13px] open-sans font-bold tracking-wide">Apellido</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-sm">
+                <i class="fa-regular fa-user"></i>
+              </span>
+              <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+            </div>
+            <p class="text-[10px] text-red-500 mt-1"></p>
+          </div>
+          <div class="flex flex-col gap-[3px]">
+            <label for="correo" class="text-[13px] open-sans font-bold tracking-wide">Correo Electrónico</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-sm">
+                <i class="fa-regular fa-envelope"></i>
+              </span>
+              <input type="email" id="correo" name="correo" placeholder="Ingrese su correo" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+            </div>
+            <p class="text-[10px] text-red-500 mt-1"></p>
+          </div>
+          <div class="flex flex-col gap-[3px]">
+            <label for="contraseña" class="text-[13px] open-sans font-bold tracking-wide">Contraseña</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-sm">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input type="password" id="contrasena" name="contraseña" placeholder="Ingrese la contraseña" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+            </div>
+            <p class="text-[10px] text-red-500 mt-1"></p>
+          </div>
+          <div class="flex flex-col gap-[3px]">
+            <label for="confirmar" class="text-[13px] open-sans font-bold tracking-wide">Confirmar Contraseña</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 right-0 flex items-center pr-4 text-gray-400 text-sm">
+                <i class="fa-solid fa-lock"></i>
+              </span>
+              <input type="password" id="confirmar" name="confirmar" placeholder="Confirmar contraseña" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+            </div>
+            <p class="text-[10px] text-red-500 mt-1"></p>
+          </div>
+          <div class="flex justify-center p-2.5 bg-[#031808] mt-4 rounded-[30px] shadow-xl/30 transition-all duration-300 hover:bg-[#0e3e02] hover:scale-[1.02] cursor-pointer">
+            <input type="submit" value="Registrarse" class="text-white open-sans font-bold tracking-[2px] text-sm uppercase">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+</body>
+</html>
+

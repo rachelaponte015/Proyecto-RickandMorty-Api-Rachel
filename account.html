@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Cuenta</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    if (!usuarioActivo) {
+      window.location.replace("login.html");
+    }
+  </script>
+</head>
+<body class="relative min-h-screen flex items-center justify-center bg-black p-6">
+  <div style="background-image: url('./img/11.jpg');" class="absolute inset-0 bg-cover bg-center blur-xs -z-20"></div>
+  <div class="bg-white/60 px-10 pt-12 pb-4 sm:px-16 sm:pt-16 sm:pb-6 rounded-2xl shadow-[0_10px_30px_rgba(0,0,0,0.2)]">
+    <h1 class="text-xl pb-4 sm:text-4xl sm:pb-6 saira uppercase tracking-widest text-center text-[#031808]">Editar Cuenta</h1>
+    
+    <form id="formEditar" class="flex flex-col gap-4">
+      <div class="flex flex-col gap-[3px]">
+        <label class="text-[13px] open-sans font-bold tracking-wide">Nombre</label>
+        <input type="text" id="nombre" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+      </div>
+
+      <div class="flex flex-col gap-[3px]">
+        <label class="text-[13px] open-sans font-bold tracking-wide">Apellido</label>
+        <input type="text" id="apellido" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+      </div>
+
+      <div class="flex flex-col gap-[3px]">
+        <label class="text-[13px] open-sans font-bold tracking-wide">Correo Electrónico</label>
+        <input type="email" id="correo" class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+      </div>
+
+      <div class="flex flex-col gap-[3px]">
+        <label class="text-[13px] open-sans font-bold tracking-wide">Contraseña</label>
+        <input type="text" id="contrasena" placeholder="..." class="w-full border-1 border-gray-200 px-[12px] py-2 open-sans text-xs rounded-xl text-gray-600 shadow-sm shadow-lime-600/20 bg-white/20 focus:outline-none focus:border-lime-600">
+      </div>
+
+      <div class="mt-4 flex flex-col gap-3">
+        <div class="flex justify-between items-center gap-2">
+          <a href="index.html" class="bg-red-800 hover:bg-[#7cce00] text-white text-[10px] p-2.5 sm:text-sm  sm:px-4 sm:py-2.5 rounded-xl transition font-semibold shadow-md">
+            Volver a Inicio
+          </a>
+          <button type="submit" class="bg-[#031808] hover:bg-[#7cce00] text-white font-semibold text-[10px] p-2.5 sm:text-sm  sm:px-4 sm:py-2.5 rounded-xl transition shadow-md cursor-pointer">
+            Guardar Cambios
+          </button>
+        </div>
+        <span id="actualizado" class="text-[#031808] text-xs sm:text-sm font-semibold text-center p-5"></span>
+      </div>
+    </form>
+  </div>
+
+  <script src="account.js"></script>
+</body>
+</html>

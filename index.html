@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <link rel="stylesheet" href="styles.css">
+  <script>
+    const usuarioActivo = JSON.parse(sessionStorage.getItem("usuarioLogueado"));
+    if (!usuarioActivo) {
+      window.location.replace("login.html");
+    }
+  </script>
+  <title>Rick And Morty</title>
+</head>
+<body class="bg-slate-100">
+  <header class="sticky top-0 z-30 flex flex-col gap-3 lg:flex-row md:justify-between items-center px-8 lg:px-12 py-4 bg-[#031808] text-white tracking-widest">
+    <h1 style="-webkit-text-stroke: 1px #7cce00;" class="text-2xl sm:text-4xl lg:text-3xl xl:text-4xl uppercase saira">Rick and Morty</h1>
+    <div class="relative">
+      <span class="absolute inset-y-0 right-0 flex items-center text-gray-500 pr-4 text-sm">
+        <i class="fa-brands fa-sistrix text-lg"></i>
+      </span>
+      <input type="text" id="buscar" placeholder="Buscar..." class="py-1.5 px-5 w-60 sm:py-2 sm:w-85 bg-white border text-black rounded-full open-sans text-sm focus:outline-none focus:border-[#7cce00]">
+    </div>
+    <div id="usuario" class="flex items-center gap-2 sm:gap-6 lg:gap-3"></div>
+  </header>
+  <section class="grid grid-cols-[repeat(3,auto)] p-4 md:p-2">
+    <button id="anterior" class="sticky top-20 py-2 sm:py-4 flex justify-end self-start cursor-pointer w-auto invisible">
+      <i class="fa-solid fa-circle-arrow-left text-2xl md:text-4xl" style="color:#031808;"></i>
+    </button>
+    <div class="pt-2 sm:pt-4 flex flex-col">
+      <select id="filtro" onchange="filtrar()" class="ml-auto w-41 sm:w-auto px-2.5 py-1.5 sm:px-3.5 sm:py-2 mr-8 bg-white border border-gray-200 rounded-xl text-black text-[10px] sm:text-xs font-semibold open-sans focus:outline-none focus:border-[#7cce00] cursor-pointer shadow-sm">
+        <option value="todos">Mostrar todos</option>
+        <option value="favoritos">Mostrar favoritos</option>
+      </select>
+      <div class="grid grid-cols-1 px-4 sm:grid-cols-2 gap-4 lg:grid-cols-3 lg:px-8 py-4" id="personajes"></div>
+    </div>
+    <button id="siguiente" class="sticky top-20 py-2 sm:py-4 flex justify-start self-start cursor-pointer">
+      <i class="fa-solid fa-circle-arrow-right text-2xl md:text-4xl" style="color:#031808;"></i>
+    </button>
+  </section>
+
+  <script src="index.js"></script>
+</body>
+</html>
