@@ -232,8 +232,10 @@ async function buscarPersonaje() {
 function filtrar(){
   const seleccion = document.querySelector("#filtro").value;
   if (seleccion === "todos"){
-    document.querySelector("#anterior").disabled = true;
-    document.querySelector("#siguiente").disabled = true;
+    document.querySelector("#siguiente").classList.remove("invisible", "pointer-events-none")
+    document.querySelector("#siguiente").disabled = false;
+    document.querySelector("#anterior").classList.remove("invisible", "pointer-events-none");
+    document.querySelector("#anterior").disabled = false;
     traerPersonajes(paginaActual);
 
   } else if (seleccion === "favoritos"){
@@ -242,8 +244,10 @@ function filtrar(){
     if (usuarioActivo) {
       const claveFav = `favoritos_${usuarioActivo.correo}`;
       const favoritos = JSON.parse(localStorage.getItem(claveFav)) || [];
-      document.querySelector("#anterior").disabled = false;
-      document.querySelector("#siguiente").disabled = false;
+      document.querySelector("#anterior").classList.add("invisible", "pointer-events-none");
+      document.querySelector("#anterior").disabled = true;
+      document.querySelector("#siguiente").classList.add("invisible", "pointer-events-none")
+      document.querySelector("#siguiente").disabled = true;
 
       if(favoritos.length > 0){
         mostrarPersonajes(favoritos);
